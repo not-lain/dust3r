@@ -34,6 +34,7 @@ class AsymmetricCroCo3DStereo (CroCoNet, PyTorchModelHubMixin):
                  patch_embed_cls='PatchEmbedDust3R',  # PatchEmbedDust3R or ManyAR_PatchEmbed
                  **croco_kwargs):
         self.patch_embed_cls = patch_embed_cls
+        print("croco_kwargs ",croco_kwargs)
         self.croco_args = fill_default_args(croco_kwargs, super().__init__)
         super().__init__(**croco_kwargs)
 
