@@ -33,6 +33,12 @@ class AsymmetricCroCo3DStereo (CroCoNet, PyTorchModelHubMixin):
                  landscape_only=True,
                  patch_embed_cls='PatchEmbedDust3R',  # PatchEmbedDust3R or ManyAR_PatchEmbed
                  **croco_kwargs):
+        valid_kwargs = ["img_size","patch_size","mask_ratio","enc_embed_dim",
+                        "enc_depth","enc_num_heads","dec_embed_dim","dec_depth",
+                        "dec_num_heads","mlp_ratio","norm_layer","norm_im2_in_dec","pos_embed"]
+        for key in croco_kwargs.keys() : 
+            if key not in valid_kwargs : 
+                croco_kwargs.pop(key)
         self.patch_embed_cls = patch_embed_cls
         self.croco_args = fill_default_args(croco_kwargs, super().__init__)
         super().__init__(**croco_kwargs)
